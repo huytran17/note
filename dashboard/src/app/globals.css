@@ -4,3 +4,8 @@
   box-sizing: border-box;
   font-family: Helvetica, sans-serif;
 }
+
+.main-bg {
+  background-color: rgba(239, 239, 239, 0.3);
+  height: 100vh;
+}
