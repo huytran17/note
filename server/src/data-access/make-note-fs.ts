@@ -87,8 +87,6 @@ export default function makeNoteFs({ filePath }: { filePath: string }) {
           ...finalNoteDetails,
         });
 
-        console.log("---------------------", JSON.stringify(noteContents));
-
         await writeFile(filePath, JSON.stringify(noteContents), {
           encoding: "utf8",
         });
