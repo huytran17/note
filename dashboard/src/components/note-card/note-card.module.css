@@ -19,6 +19,7 @@
   border-radius: 8px;
   text-align: left;
   position: relative;
+  background-color: #fff;
 }
 
 .note-card:hover {
@@ -30,10 +31,10 @@
 .note-card::after {
   content: "";
   position: absolute;
-  top: -2%;
+  top: -3%;
   width: 8px;
   height: 8px;
-  background-color: #fff;
+  background-color: rgba(239, 239, 239, 0.3);
   border: 1px solid #000;
   border-radius: 100%;
 }
