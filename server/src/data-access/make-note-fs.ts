@@ -1,4 +1,4 @@
-import { appendFile, readFile, writeFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import Note from "../entities/note";
 import INote from "../interfaces/note";
 import INoteFs from "./interfaces/note-fs";
