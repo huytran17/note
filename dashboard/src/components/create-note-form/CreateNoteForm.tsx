@@ -11,7 +11,7 @@ export default function CreateNoteForm() {
   const dispatch = useRootDispatch();
   const router = useRouter();
 
-  const backToPrevPage = () => router.back();
+  const backToHome = () => router.push("/");
 
   const updateNoteData = (
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,12 +26,13 @@ export default function CreateNoteForm() {
   const submit = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     await dispatch(noteActions.CREATE_NOTE(data));
+    router.push("/list");
   };
 
   return (
     <div className={styles["form-create-note-wrapper"]}>
       <div className={styles["menubar"]}></div>
-      <div className={styles["close-icon"]} onClick={backToPrevPage}></div>
+      <div className={styles["close-icon"]} onClick={backToHome}></div>
       <div className={styles["form-create-note"]}>
         <form>
           <div className={styles["form-row"]}>

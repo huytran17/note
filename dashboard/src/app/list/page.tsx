@@ -12,7 +12,7 @@ export default function ListNotes() {
   const [notes, setNotes] = useState([]);
   const router = useRouter();
 
-  const backToPrevPage = () => router.back();
+  const backToHome = () => router.push("/");
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -25,8 +25,8 @@ export default function ListNotes() {
 
   return (
     <div className={styles["note-list"]}>
-      <div className={styles["back"]}>
-        <button onClick={backToPrevPage}>Back</button>
+      <div className={styles["home"]}>
+        <button onClick={backToHome}>Home</button>
       </div>
       <Notelist data={notes} />
     </div>

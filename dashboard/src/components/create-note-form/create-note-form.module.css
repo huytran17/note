@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.form-action-button button:hover {
+  background-color: #7c96ffcd;
+}
+
 .form-create-note textarea,
 .form-create-note input {
   width: 100%;

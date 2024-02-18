@@ -24,16 +24,15 @@ export default function EditNoteForm({ data }: { data: INote }) {
   const submit = async (event) => {
     event.preventDefault();
     await dispatch(noteActions.UPDATE_NOTE(note));
+    router.push("/list");
   };
 
-  const backToPrevPage = () => {
-    router.back();
-  };
+  const backToHome = () => router.push("/");
 
   return (
     <div className={styles["form-edit-note-wrapper"]}>
       <div className={styles["menubar"]}></div>
-      <div className={styles["close-icon"]} onClick={backToPrevPage}></div>
+      <div className={styles["close-icon"]} onClick={backToHome}></div>
       <div className={styles["form-edit-note"]}>
         <form>
           <div className={styles["form-row"]}>
