@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 export default function EditNoteForm({ data }: { data: INote }) {
   const dispatch = useRootDispatch();
   const [note, setNote] = useState(data);
+  const [mousePosition, setMousePosition] = useState({ x: 0 });
   const router = useRouter();
   const dragableRef = useRef(null);
   const dropzoneRef = useRef(null);
@@ -37,40 +38,39 @@ export default function EditNoteForm({ data }: { data: INote }) {
       return;
     }
 
-    dragableRef.current.style.top = event.pageY + "px";
-    dragableRef.current.style.left = event.pageX + "px";
-  };
+    const dragableWidth = dragableRef.current.offsetWidth;
 
-  dropzoneRef.current?.addEventListener("drop", onDrop);
-
-  dropzoneRef.current?.addEventListener("dragover", (event) => {
-    event.preventDefault();
-  });
-
-  dragableRef.current?.addEventListener("dragstart", (event) => {});
-
-  dragableRef.current?.addEventListener("mousedown", (event) => {
-    if (event.target.getAttribute("id") !== "dragzone") {
-      return dropzoneRef.current?.removeEventListener("drop", onDrop);
+    let positionX = event.pageX;
+    if (mousePosition.x < dragableWidth / 2) {
+      positionX = event.pageX + (dragableWidth / 2 - mousePosition.x);
+    } else if (mousePosition.x > dragableWidth / 2) {
+      positionX = event.pageX - (mousePosition.x - dragableWidth / 2);
     }
 
-    dropzoneRef.current?.addEventListener("drop", onDrop);
-  });
+    dragableRef.current.style.top = event.pageY + "px";
+    dragableRef.current.style.left = positionX + "px";
+  };
 
-  useEffect(() => {
-    return () => {
-      dropzoneRef.current?.removeEventListener("drop", onDrop);
-    };
-  });
+  const onDragOver = (event) => event.preventDefault();
+  const onDragStart = () => {};
+  const onMouseDown = (event) =>
+    setMousePosition({ x: event.nativeEvent.offsetX });
 
   return (
-    <div ref={dropzoneRef} className={styles["dropzone"]}>
+    <div
+      ref={dropzoneRef}
+      className={styles["dropzone"]}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+    >
       <div
         ref={dragableRef}
         className={styles["form-edit-note-wrapper"]}
         draggable
+        onDragStart={onDragStart}
+        onMouseDown={onMouseDown}
       >
-        <div id="dragzone" className={styles["dragzone"]}></div>
+        <div className={styles["menubar"]}></div>
         <div className={styles["close-icon"]} onClick={backToPrevPage}></div>
         <div className={styles["form-edit-note"]}>
           <form>
