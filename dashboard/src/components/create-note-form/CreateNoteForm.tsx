@@ -4,10 +4,14 @@ import { FormEvent, useState } from "react";
 import styles from "./create-note-form.module.css";
 import noteActions from "@/store/note/actions/actions";
 import { useRootDispatch } from "@/hooks/redux";
+import { useRouter } from "next/navigation";
 
 export default function CreateNoteForm() {
   const [data, setData] = useState({});
   const dispatch = useRootDispatch();
+  const router = useRouter();
+
+  const backToPrevPage = () => router.back();
 
   const updateNoteData = (
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,33 +29,37 @@ export default function CreateNoteForm() {
   };
 
   return (
-    <div className={styles["form-create-note"]}>
-      <form>
-        <div className={styles["form-row"]}>
-          <div className={styles["form-group"]}>
-            <label htmlFor="title">Title</label>
-            <input name="title" type="text" onInput={updateNoteData} />
+    <div className={styles["form-create-note-wrapper"]}>
+      <div className={styles["menubar"]}></div>
+      <div className={styles["close-icon"]} onClick={backToPrevPage}></div>
+      <div className={styles["form-create-note"]}>
+        <form>
+          <div className={styles["form-row"]}>
+            <div className={styles["form-group"]}>
+              <label htmlFor="title">Title</label>
+              <input name="title" type="text" onInput={updateNoteData} />
+            </div>
           </div>
-        </div>
 
-        <div className={styles["form-row"]}>
-          <div className={styles["form-group"]}>
-            <label htmlFor="content">Content</label>
-            <textarea
-              name="content"
-              cols={150}
-              rows={10}
-              onInput={updateNoteData}
-            ></textarea>
+          <div className={styles["form-row"]}>
+            <div className={styles["form-group"]}>
+              <label htmlFor="content">Content</label>
+              <textarea
+                name="content"
+                cols={150}
+                rows={10}
+                onInput={updateNoteData}
+              ></textarea>
+            </div>
           </div>
-        </div>
 
-        <div className={styles["form-row"]}>
-          <div className={styles["form-action-button"]}>
-            <button onClick={submit}>Submit</button>
+          <div className={styles["form-row"]}>
+            <div className={styles["form-action-button"]}>
+              <button onClick={submit}>Submit</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

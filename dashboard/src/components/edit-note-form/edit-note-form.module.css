@@ -56,7 +56,14 @@
   gap: 4px;
 }
 
-.form-action-button {
+.form-action-button button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #7c96ff;
+  color: #fff;
+  margin: 0 auto;
+  display: block;
 }
 
 .form-edit-note textarea,
