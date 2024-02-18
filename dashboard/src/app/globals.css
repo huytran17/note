@@ -9,3 +9,40 @@
   background-color: rgba(239, 239, 239, 0.3);
   height: 100vh;
 }
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  max-width: 400px;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.link-list .link-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.25s linear;
+}
+
+.link-list .link-item:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+.link-list a {
+  padding: 8px 12px;
+  width: 100%;
+  height: 50px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 35px;
+}
+
+.link-list a:visited {
+  color: #000;
+}
