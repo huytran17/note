@@ -2,9 +2,9 @@
 
 import { useRootDispatch } from "@/hooks/redux";
 import noteActions from "@/store/note/actions/actions";
-import { FormEvent, useEffect, useRef, useState } from "react";
-import styles from "./edit-note-form.module.css";
 import { useRouter } from "next/navigation";
+import { FormEvent, useRef, useState } from "react";
+import styles from "./edit-note-form.module.css";
 
 export default function EditNoteForm({ data }: { data: INote }) {
   const dispatch = useRootDispatch();
